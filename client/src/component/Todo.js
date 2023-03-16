@@ -7,13 +7,14 @@ function Todo() {
   const [taskList, settaskList] = useState([])
 
   const getTodo = async () => {
-    var todolist = await getData()
-    settaskList([...todolist.data])
+    let todolist = await getData()
+    let finData = todolist.data
+    settaskList(finData)
   }
 
   useEffect(() => {
     getTodo()
-  }, [task])
+  }, [])
 
 
   const handleSubmit = async (e) => {
@@ -21,16 +22,18 @@ function Todo() {
     create({ name: task })
     // settaskList([...taskList, { complete: false }])
     settask('')
-    // settaskList([...getTodo])
+    await getTodo()
   }
 
-  const strike = (x) => {
+  const strike = async (x) => {
     update(x.id, { complete: !x.complete })
     // settaskList(taskList.map((a) => a.task === x ? { ...a, complete: !a.complete } : a))
+    await getTodo()
   }
 
-  const deleteTask = (x) => {
+  const deleteTask = async (x) => {
     deleteById(x.id)
+    await getTodo()
   }
 
   return (
