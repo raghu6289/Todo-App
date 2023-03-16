@@ -7,7 +7,7 @@ export const todolist = sequelize.define("todolist", {
     allowNull: false,
     primaryKey: true
   },
-  name: {
+  task: {
     type: DataTypes.STRING,
     allowNull: false
   },

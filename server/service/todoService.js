@@ -1,6 +1,7 @@
 import todoRepo from "../repo/todoRepo.js";
 
 const createtodo = async (body) => {
+  console.log(body);
   return await todoRepo.createtodo(body)
 }
 
